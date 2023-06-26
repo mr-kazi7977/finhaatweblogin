@@ -27,7 +27,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDividerModule } from '@angular/material/divider';
 import { MaterialFileInputModule } from 'ngx-mat-file-input';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { CdotEntryFormComponent } from '../cdot-entry-form/cdot-entry-form.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatFormFieldModule} from '@angular/material/form-field';
 
@@ -38,7 +37,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 @NgModule({
   declarations: [
     DashboardPageComponent,
-    CdotEntryFormComponent,
+    
    
   ],
   imports: [

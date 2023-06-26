@@ -30,10 +30,8 @@ import { DetailsComponent } from './pages/details/details.component';
 import { PaymentComponent } from './pages/payment/payment.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PolicydetailComponent } from './pages/policyDetail/policydetail/policydetail.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import { DeclarationComponent } from './pages/declaration/declaration.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -49,10 +47,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
 
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { InsuredDetailsComponent } from './pages/insured-details/insured-details.component';
-import { ReportsComponent } from './pages/reports/reports.component';
+// import { ReportsComponent } from './pages/reports/reports.component';
 import { PaymentReceiptComponent } from './pages/payment-receipt/payment-receipt.component';
-import { CdotEditFormComponent } from './pages/cdot-edit-form/cdot-edit-form.component';
 import { VehicleRegisternumberComponent } from './pages/vehicle-registernumber/vehicle-registernumber.component';
 
 import { TextMaskModule } from 'angular2-text-mask';
@@ -70,14 +66,10 @@ export function tokenGetter() {
     NotFoundComponent,
     DetailsComponent,
     PaymentComponent,
-    PolicydetailComponent,
-    DeclarationComponent,
     SpinnerOverlayComponent,
     OtpmodalComponent,
-    InsuredDetailsComponent,
-    ReportsComponent,
+    // ReportsComponent,
     PaymentReceiptComponent,
-    CdotEditFormComponent,
     VehicleRegisternumberComponent,
     
     
