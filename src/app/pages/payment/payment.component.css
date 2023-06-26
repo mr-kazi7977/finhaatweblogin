@@ -1,0 +1,52 @@
+
+  .back{
+    margin-left:500px;
+    margin-top: 10px;
+    width: 100px;
+    height: 35px;
+    
+}
+
+
+@media only screen and (max-width: 600px) {
+    .table{
+        width: 100%;
+    }
+    
+}
+  
+
+.body{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFF4EE;
+}
+
+.container{
+    /* position: relative; */
+    /* max-width: 1000px; */
+    width: 100%;
+    border-radius: 6px;
+    padding: 30px;
+    margin: 0 15px;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+ .container header{
+    position: relative;
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+}
+ .container header::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 3px;
+    width: 27px;
+    border-radius: 8px;
+    background-color: #4070f4;}
+    

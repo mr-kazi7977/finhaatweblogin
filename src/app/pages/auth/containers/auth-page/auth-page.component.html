@@ -1,0 +1,30 @@
+<mat-toolbar>
+  <mat-toolbar-row >
+    <!-- style="background-color: skyblue !important;" -->
+    <span ><img src="./assets/auth/finhaat-trans.png" style="height: 50px" /></span>
+    <span class="example-spacer"></span>
+
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="auth-page">
+  <div class="auth-page__content-block">
+    <div class="auth-page__content-wrapper">
+          <div class="head"> 
+         
+          <app-login-form (sendLoginForm)="sendLoginForm()"></app-login-form>
+        </div>
+
+
+      <p class="auth-page__footer-title">©{{todayDate | year}} <a href="https://finhaat.com/">finhaat</a>,
+       . All rights reserved.</p>
+    </div>
+  </div>
+  <div class="vl"></div>
+  <div class="auth-page__logo">
+    <div class="auth-page__logo-wrapper">
+      <img class="auth-page__logo-img" src="./assets/auth/logo_large.svg" alt="logo">
+      <h6 class="auth-page__logo-title">C-Dot</h6>
+    </div>
+  </div>
+</div>

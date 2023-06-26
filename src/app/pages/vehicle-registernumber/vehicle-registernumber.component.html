@@ -1,0 +1,68 @@
+<app-layout>
+
+
+   <!-- <form class="form" [formGroup]="loginForm">
+        <br />
+      
+       
+
+        <div id="wrap" class="input">
+          <header class="input-header">
+            <h1 style="visibility: hidden;">Input Text/Password Animation</h1>
+          </header>
+          <section class="input-content">
+            <h2 style="visibility: hidden;">Input Text/Password Animation<span>Only CSS</span></h2>
+            <div class="input-content-wrap">
+              <dl class="inputbox">
+                <dt class="inputbox-title"></dt>
+                <dd class="inputbox-content">
+                  <input id="input0" type="text"  formControlName="vehiclenumber" required/>
+                  <label for="input0">Enter Vehicle Register Number</label>
+                  <span class="underline"></span>
+                </dd>
+              </dl>
+              
+              <div class="btns">
+                  <button class="btn btn-confirm" (click)="getQuotes()">Get Quotes</button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </form> -->
+
+   <div class="w-100 raw">
+      <div class="wrapper mt-5 ">
+         <div class="title">
+            <span style="visibility: hidden;">Login Form</span>
+         </div>
+         <form [formGroup]="loginForm">
+            <div class="field" style="visibility: hidden;">
+               <input type="text" required>
+               <label>Email Address</label>
+            </div>
+            <div class="field">
+               <input type="text" required maxlength="10" #vehiclenumber formControlName="vehiclenumber"
+                  (input)="vehiclenumber.value = vehiclenumber.value.toUpperCase()">
+               <label>Enter Vehicle Register Number</label>
+            </div>
+            <div class="content" style="visibility: hidden;">
+               <div class="checkbox">
+                  <input type="checkbox" id="remember-me">
+                  <label for="remember-me">Remember me</label>
+               </div>
+               <div class="pass-link">
+                  <a href="#">Forgot password?</a>
+               </div>
+            </div>
+            <div class="field">
+               <input type="submit" (click)="getQuotes()" value="Get Quotes">
+            </div>
+            <div class="signup-link" style="visibility: hidden;">
+               Not a member? <a href="#">Signup now</a>
+            </div>
+         </form>
+      </div>
+   </div>
+
+
+</app-layout>

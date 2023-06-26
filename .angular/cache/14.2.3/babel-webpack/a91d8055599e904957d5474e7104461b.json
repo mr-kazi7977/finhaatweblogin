@@ -1,0 +1,1 @@
+{"ast":null,"code":"export const MY_FORMATS = {\n  parse: {\n    dateInput: 'LL'\n  },\n  display: {\n    dateInput: 'YYYY-MM-DD',\n    monthYearLabel: 'YYYY',\n    dateA11yLabel: 'LL',\n    monthYearA11yLabel: 'YYYY'\n  }\n};","map":null,"metadata":{},"sourceType":"module"}

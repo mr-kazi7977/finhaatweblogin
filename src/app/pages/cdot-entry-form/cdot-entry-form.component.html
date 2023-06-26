@@ -1,0 +1,466 @@
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<app-layout>
+
+    <ng-form class="body">
+        <div class="container">
+            <header>Policy Details &nbsp; बीमा धारक विवरण</header>
+            <div class="input-field fix mt-2 pt-3" (scroll)="onscroll()" [ngClass]="navbarfixed?'fixed':'nofixed'">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="space1">Product Name </label>
+                        <label class="space1">प्रोडक्ट का नाम </label>
+                        <!-- <select  #team (click)="onselect(team.value)" >
+                    <option value="Product2" [selected]="selectProduct">select product</option>
+                    <option  *ngFor="let a of selectpro">{{a.productname}}</option>
+                </select> -->
+
+                        <mat-form-field appearance="fill">
+                            <!-- <option value="Product2" [selected]="selectProduct">select product</option> -->
+
+                            <mat-select [(value)]="scode" (selectionChange)="dist(scode)" 
+                                [placeholder]="selectProduct">
+
+                                <mat-option *ngFor="let a of selectpro index as i" [value]="a.productcode"
+                                    (click)="adddata(a)">
+                                    {{a.productname}}
+                                </mat-option>
+
+                            </mat-select>
+
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4 ml-3">
+                        <label for="" class="text-uppercase">suminsured <i class="fa fa-inr"></i>
+                            &nbsp; बीमित राशि</label>
+                        <!-- <mat-label class="text-uppercase ">suminsured <i class="fa fa-inr"></i>/day &nbsp; बीमित राशि </mat-label> -->
+                        <!-- <mat-form-field class="example-full-width"> -->
+                        <!-- <mat-label class="text-uppercase mb-5">suminsured per day</mat-label> -->
+                        <!-- <input matInput value={{suminsured}} readonly style="width: 60px;"> -->
+                        <!-- </mat-form-field> -->
+                        <p>{{suminsured}}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="" class="text-uppercase ">suminsured_icu <i class="fa fa-inr"></i>
+                            &nbsp; बीमित राशि आईसीयू</label>
+                        <!-- <mat-label class="text-uppercase">suminsuredicu <i class="fa fa-inr"></i>/day &nbsp; बीमित राशि आईसीयू</mat-label>
+                        <mat-form-field class="example-full-width">
+                            <mat-label class="text-uppercase">suminsuredicu per day</mat-label>
+                            <input matInput value={{suminsuredicu}} readonly>
+                        </mat-form-field> -->
+                        <p>{{suminsuredicu}}</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <form [formGroup]="form">
+
+                <div class="form first">
+                    <div class="details personal">
+
+
+
+                        <span class="">Personal Details &nbsp;व्यक्तिगत विवरण </span>
+
+
+
+                        <!-- start -->
+                        <ng-container formArrayName="insureds" *ngFor="let o of insureds.controls; let i = index">
+
+
+                            <div class="row mt-2" [formGroupName]="i">
+
+                                <div class="fields" id="rcorners3">
+
+                                    <div class="row" style="width: 100%;">
+                                        <span class="">Insured Person &nbsp; बीमित व्यक्ति :{{i+1}}
+                                            <i class="fa fa-close" style="font-size:24px;float: right;color: red;"
+                                                (click)="removeitem(i)"
+                                                [style.visibility]="(i== 0) ? 'hidden' : 'visible' "></i> </span>
+
+
+                                    </div>
+
+                                    <div class="input-field">
+                                        <label for="validationDefault01">Name &nbsp; नाम</label>
+                                        <input type="text" formControlName="name" id="validationDefault01"
+                                            placeholder="enter name">
+                                    </div>
+
+                                    <div class="input-field">
+                                        <label>Father Name &nbsp; पिता का नाम</label>
+                                        <input type="text" formControlName="fathername"
+                                            placeholder="enter father's name">
+                                    </div>
+
+                                    <!-- <ng-container *ngIf="policytypeselect=='W'"> -->
+                                    <div class="input-field" *ngIf="policytypeselect=='W'">
+                                        <label>Gender &nbsp; लिंग</label>
+                                        <mat-select [(value)]="scode2" formControlName="gender"
+                                            [disabled]="disabledfemale">
+                                            <mat-option value="male">male</mat-option>
+                                            <mat-option value="female">female</mat-option>
+                                            <mat-option value="other">other</mat-option>
+                                        </mat-select>
+
+                                    </div>
+                                    <!-- </ng-container> -->
+
+                                    <!-- <ng-container *ngIf="policytypeselect=='F'"> -->
+                                    <div class="input-field" *ngIf="policytypeselect=='F'">
+                                        <label>Gender &nbsp; लिंग</label>
+                                        <mat-select formControlName="gender">
+                                            <mat-option value="male">male</mat-option>
+                                            <mat-option value="female">female</mat-option>
+                                            <mat-option value="other">other</mat-option>
+                                        </mat-select>
+                                    </div>
+                                    <!-- </ng-container> -->
+
+
+                                    <div class="input-field">
+                                        <!-- <label>DOB &nbsp; जन्म तिथि</label> -->
+                                        <!-- <input type="date" formControlName="dateinsured"  placeholder="Enter birth date"> -->
+
+                                        <mat-form-field appearance="fill">
+                                            <mat-label><small>DOB &nbsp; जन्म तिथि </small></mat-label>
+                                            <input matInput [matDatepicker]="picker" (click)="picker.open()" formControlName="dateinsured" [max]="maxdate" readonly>
+                                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                            <mat-hint>MM/DD/YYYY</mat-hint>
+                                            <mat-datepicker #picker></mat-datepicker>
+                                        </mat-form-field>
+
+
+                                    </div>
+
+
+                                    <div class="input-field ">
+
+                                        <label class="space1">Relationship With Primary &nbsp; प्राथमिक के साथ
+                                            संबंध</label>
+
+
+                                        <mat-select #selectgene formControlName="relation" [disabled]="i==0"
+                                            (selectionChange)="openSnackBar()">
+                                            <mat-option value="R002" >Husband</mat-option>
+                                            <mat-option value="R002" >Wife</mat-option>
+                                            <mat-option *ngFor="let reltionship of relation"
+                                                [value]="reltionship.rcode">
+                                                {{reltionship.rname}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </div>
+
+                                    <!-- height -->
+                                    <div class="input-field ">
+                                        <label class="space1">Height Feet.inch &nbsp; कद</label>
+                                        <mat-select #selectgene formControlName="height">
+                                            <mat-option *ngFor="let height of heightdata" [value]="height">
+                                                {{height}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </div>
+
+                                    <!-- weight -->
+                                    <div class="input-field">
+                                        <label>Weight kg &nbsp; वजन</label>
+                                        <input type="number" formControlName="weight" placeholder="enter weight">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </ng-container>
+
+                        <button (click)="addInsured()" [disabled]="hideshow" class="{{disabledcolor}} button1"
+                            style="height:70px ;">Add Insured
+                            Person <br> बीमित व्यक्ति
+                            जोड़ें</button>
+                        <!-- end -->
+
+
+
+
+                        <!---->
+                        <div class="fields" id="rcorners3">
+                            <!-- <div class="input-field">
+                                <label>Occupation &nbsp; व्यवसाय</label>
+                                <input type="text" formControlName="occupation" placeholder="Enter your occupation">
+                            </div> -->
+                            <div class="input-field">
+                                <label>Occupation &nbsp; व्यवसाय</label>
+                                <!-- <input type="text" formControlName="occupation" placeholder="Enter your occupation"> -->
+                                <select #select formControlName="occupation">
+                                    <option *ngFor="let occu of occupation" [value]="occu.job_code">{{occu.job_name}}
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="input-field">
+                                <label>Document Type &nbsp; दस्तावेज़ का प्रकार</label>
+
+                                <select #selectgen formControlName="doctype" #name (change)="adharvalid(name.value)" >
+                                    <option disabled selected>Select Document Type</option>
+                                    <option *ngFor="let doc of doctype" [ngValue]="doc" >{{doc}}</option>
+                                </select>
+                            </div>
+
+                            <div class="input-field">
+                                <label>Document Number &nbsp; दस्तावेज़ संख्या</label>
+                                <input type="text" formControlName="docnumber" maxlength={{size}} placeholder={{dcoholder}}>
+                                
+                            </div>
+
+
+                            <div class="input-field">
+                                <label>Mobile Number &nbsp; मोबाइल नंबर</label>
+                                <input
+                                    [ngStyle]="{'borderColor': form.get('mobile').invalid && form.get('mobile').touched ? 'red': ''}"
+                                    type="text" formControlName="mobile" placeholder="Enter mobile number" maxlength="10">
+                                <ng-container *ngIf="form.get('mobile').invalid && form.get('mobile').touched">
+                                    <span style="color: red" class="errorMsg">Enter valid Mobile Number</span>
+                                </ng-container>
+                            </div>
+
+                            <div class="input-field">
+                                <label>Email &nbsp; ईमेल</label>
+                                <input type="text" formControlName="email" placeholder="Enter email id">
+
+                            </div>
+                        </div>
+
+
+                        <!---->
+
+                        <div class="fields" id="rcorners3">
+                            <div class="row" style="width: 100%;">
+                                <span class="title">Nominee Details &nbsp; नॉमिनी विवरण</span>
+                            </div>
+                            <div class="input-field">
+                                <label>Nominee Name &nbsp; नॉमिनी व्यक्ति का नाम</label>
+                                <input type="text" formControlName="nomname" placeholder="Enter nominee name">
+                            </div>
+
+                            <div class="input-field">
+                                <!-- <label>Nominee DOB &nbsp; नॉमिनी जन्म तिथि</label> -->
+                                <!-- <input type="date" formControlName="nomDob" placeholder="Enter nominee DOB"> -->
+                                <mat-form-field appearance="fill" >
+
+                                    <mat-label> <small>Nominee DOB &nbsp; नॉमिनी जन्म तिथि</small></mat-label>
+                                    <input matInput [matDatepicker]="picker" (click)="picker.open()" formControlName="nomDob" [max]="maxdate"
+                                    (dateChange)="dateselect($event)">
+                                    <mat-hint>MM/DD/YYYY</mat-hint>
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+
+                            </div>
+
+
+                            <div class="input-field">
+                                <label>Nominee Gender &nbsp;नॉमिनी लिंग</label>
+                                <select #selectgen formControlName="nomgender">
+                                    <option disabled selected>Select nominee gender</option>
+                                    <option *ngFor="let c of nomgenderopt" [ngValue]="c">{{c}}</option>
+                                </select>
+                            </div>
+
+                            <!-- <div class="input-field">
+                                <label>Nominee Mobile Number &nbsp;नॉमिनी मोबाइल नंबर</label>
+                                <input type="text"
+                                    [ngStyle]="{'borderColor': form.get('nommobile').invalid && form.get('nommobile').touched ? 'red': ''}"
+                                    formControlName="nommobile" placeholder="Enter nominee mobile number"
+                                    maxlength="10">
+                                <ng-container *ngIf="form.get('nommobile').invalid && form.get('nommobile').touched">
+                                    <span style="color: red" class="errorMsg">Enter valid Mobile Number</span>
+                                </ng-container>
+                            </div> -->
+
+                            <!-- <div class="input-field">
+                                <label>Nominee Relationship &nbsp;नॉमिनी संबंध</label>
+                                <input type="text" formControlName="nomirelation"
+                                    placeholder="Enter nominee relationship">
+                            </div> -->
+                            <div class="input-field">
+                                <label>Nominee Relationship &nbsp;नॉमिनी संबंध</label>
+                                <!-- <input type="text" formControlName="nomirelation"
+                                    placeholder="Enter nominee relationship"> -->
+                                <select #select formControlName="nomirelation">
+                                    <option value="R002">Husband</option>
+                                    <option value="R002">Wife</option>
+                                    <option *ngFor="let rel of nomrelation " [value]="rel.nominee_rcode">
+                                        {{rel.nominee_rname}}
+                                    </option>
+                                </select>
+                            </div>
+
+                            <!-- <div class="input-field">
+                                <label>Nominee Minor &nbsp;नामांकित नाबालिग</label>
+                                <select #select formControlName="minor">
+                                    <option *ngFor="let minorOpt of minoropt" [ngValue]="minorOpt">{{minorOpt}}
+                                    </option>
+                                </select>
+                            </div> -->
+
+                            <ng-container *ngIf="this.ageresult == 103">
+
+                                <div class="input-field data ">
+                                    <label>Nominee Guardian Name &nbsp;
+                                        नॉमिनी अभिभावक का नाम</label>
+                                    <input type="text" formControlName="nomguardname"
+                                        placeholder="Enter nominee gaurdian name">
+                                </div>
+
+                                <div class="input-field data">
+                                    <label>Nominee Guardian Age &nbsp;नॉमिनी अभिभावक आयु</label>
+                                    <input type="number" formControlName="nomguardage"
+                                        placeholder="Enter nominee gaurdian age">
+                                </div>
+
+                                <!-- <div class="input-field data">
+                                    <label>nominee Guardian Relationship With Nominee &nbsp; नामांकित अभिभावक
+                                        नामांकित व्यक्ति के साथ संबंध</label>
+                                    <input type="text" formControlName="guardrelation"
+                                        placeholder="Enter nominee gaurdian relationship with nominee">
+                                </div> -->
+
+                                <div class="input-field">
+                                    <label>Nominee Guardian Relationship With Nominee &nbsp; नामांकित अभिभावक
+                                        नामांकित व्यक्ति के साथ संबंध</label>
+                                    <select #select formControlName="guardrelation">
+                                        <option value="R002">Husband</option>
+                                        <option value="R002">Wife</option>
+                                        <option *ngFor="let rel of nomrelation " [value]="rel.nominee_rcode">
+                                            {{rel.nominee_rname}}
+                                        </option>
+                                    </select>
+                                </div>
+
+                            </ng-container>
+                            <div class="input-field">
+                                <label>Policy Tenure (In Month) &nbsp;पॉलिसी अवधि (
+                                    महीने में)</label>
+                                <input type="text" formControlName="tenure" placeholder="Enter policy tenure">
+                            </div>
+
+                            <!-- <div class="input-field">
+                                <label>Policy Start Date &nbsp; नीति प्रारंभ तिथि</label>
+                                <input type="date" placeholder="Enter policy start date" formControlName="policydate">
+                            </div>
+ -->
+
+                            <div class="row" style="width: 100%;">
+                                <span class="title">Address Details &nbsp;पते का विवरण</span>
+                            </div>
+                            <div class="input-field" style="width: 100%;">
+                                <label>Address &nbsp;पता</label>
+                                <input type="text" formControlName="address" placeholder="Enter address" 
+                                (keyup)="addlimit($event.target.value)" maxlength="50">
+                            </div>
+                            <!-- <div class="input-field">
+                                <label>City &nbsp;शहर</label>
+                                <input type="text" formControlName="city" placeholder="Enter city name">
+                            </div>
+                            <div class="input-field">
+                                <label>State &nbsp;राज्य</label>
+                                <input type="text" formControlName="state" placeholder="Enter state name">
+                            </div>
+                            <div class="input-field">
+                                <label>district &nbsp; जिला</label>
+                                <input type="text" formControlName="district" placeholder="Enter state name">
+                            </div>
+                            <div class="input-field">
+                                <label>Pin Code &nbsp;पिन कोड</label>
+                                <input type="text" formControlName="pincode" name="pin_code"
+                                    placeholder="Enter pin code">
+                            </div> -->
+                            <div class="input-field">
+                                <label>Pin Code &nbsp;पिन कोड</label>
+
+
+                                <input type="number" formControlName="pincode" id="validationDefault01"
+                                    (keyup)="getpincode($event.target.value)" placeholder="enter pincode">
+                            </div>
+
+                            <div class="input-field">
+                                <label>City &nbsp;शहर</label>
+                                <!-- <input type="text" formControlName="city" placeholder="Enter city name"> -->
+                                <select formControlName="city" [(ngModel)]="locationData.cityName">
+                                    <option [value]="locationData.cityName">
+                                        {{locationData.cityName}}</option>
+                                </select>
+                            </div>
+
+                            <!-- <div class="input-field">
+                                <label>State &nbsp;राज्य</label>
+                                <mat-form-field >
+                                    <mat-select [(value)]="statecode" 
+                                    formControlName="state"
+                                       placeholder="Select State">
+                                        <mat-option  
+                                        [value]="locationData.stateId">
+                                            {{locationData.stateName}}
+                                            
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                </div> -->
+
+                            <div class="input-field">
+                                <label>District &nbsp; जिला</label>
+                                <!-- <input type="text" formControlName="district" placeholder="Enter state name"> -->
+                                <select formControlName="district" [(ngModel)]="locationData.districtName">
+                                    <option [value]="locationData.districtName">
+                                        {{locationData.districtName}}</option>
+                                </select>
+                            </div>
+
+                            <div class="input-field">
+                                <label>State &nbsp;राज्य</label>
+
+                                <select #select formControlName="state" [(ngModel)]="locationData.stateName">
+                                    <option [value]="locationData.stateName"> {{locationData.stateName}}
+                                    </option>
+                                </select>
+                                <!-- <mat-form-field >
+
+                                        <mat-select [(value)]="statecode" 
+                                        formControlName="state"
+                                           placeholder="Select State">
+                                            <mat-option  
+                                            [value]="locationData.stateId">
+                                                {{locationData.stateName}}
+                                                
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field> -->
+                            </div>
+
+
+
+
+                        </div>
+
+
+
+                    </div>
+
+                    <button class="button1" (click)="save()">Save</button>
+                    <!-- <button class="btn btn-primary" (click)="validate()">validate</button> -->
+
+                </div>
+
+
+
+            </form>
+
+
+
+        </div>
+    </ng-form>
+
+
+
+    <!-- <button mat-stroked-button (click)="openSnackBar()">Show snack-bar</button> -->
+</app-layout>

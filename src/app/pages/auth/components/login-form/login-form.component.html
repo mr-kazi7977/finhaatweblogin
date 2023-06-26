@@ -1,0 +1,52 @@
+<!-- <mat-checkbox class="example-margin" [(ngModel)]="mobilelogin" *ngIf="selected=='PO';">login with mobile</mat-checkbox> -->
+
+<form class="form" [formGroup]="loginForm">
+  <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+  <br />
+
+  <!-- <mat-form-field appearance="outline" class="input-width">
+    <mat-label>Login As</mat-label>
+    <mat-select [(value)]="selected" style="display: inline-block !important;">
+      <mat-option *ngFor="let data of userTypeList" [value]="data.userTypeId" (click)="mobileLoginUncheck();">
+        {{data.userTypeName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field> -->
+
+
+
+  <mat-form-field appearance="outline" class="input-width" [hidden]="mobilelogin">
+    <mat-label>userid</mat-label>
+    <input type="text" matInput placeholder="userid" formControlName="userid">
+
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="input-width" [hidden]="mobilelogin">
+    <mat-label>password</mat-label>
+    <input type="password" matInput placeholder="password" formControlName="password">
+
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="input-width" [hidden]="!mobilelogin">
+    <mat-label>Mobile Number</mat-label>
+    <input type="tel" matInput placeholder="Mobile Number" formControlName="mobile" maxlength="10">
+    <mat-icon matSuffix>mobile_screen_share</mat-icon>
+
+    <mat-hint>Enter 10 Digit Number</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="input-width" *ngIf="showOTP">
+    <mat-label>OTP</mat-label>
+    <input matInput placeholder="OTP" formControlName="otp">
+    <mat-icon matSuffix>vpn_key</mat-icon>
+    <mat-hint>Enter OTP Sent on Mobile Number</mat-hint>
+  </mat-form-field>
+
+  <div class="form-actions">
+    <button class="form-actions__login" mat-raised-button color="primary" type="submit" (click)="sendOTP()"
+      *ngIf="!showOTP && mobilelogin" [disabled]="!loginForm.valid">Send OTP</button>
+    <button class="form-actions__login" mat-raised-button color="primary" type="submit" (click)="verifyOTP()"
+      *ngIf="showOTP && mobilelogin" [disabled]="!loginForm.valid">Verify</button>
+    <button class="form-actions__login" mat-raised-button color="primary" type="submit" (click)="login()"
+      *ngIf="!mobilelogin">Login</button>
+  </div>
+</form>

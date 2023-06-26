@@ -1,0 +1,35 @@
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/service/auth.service';
+
+import { routes } from '../../../../consts';
+
+@Component({
+  selector: 'app-auth-page',
+  templateUrl: './auth-page.component.html',
+  styleUrls: ['./auth-page.component.scss']
+})
+export class AuthPageComponent {
+  public todayDate: Date = new Date();
+  public routers: typeof routes = routes;
+
+  constructor(
+    private service: AuthService,
+    private router: Router
+  ) { }
+  ngOnInit(): void {
+    this.sendLoginForm();
+  }
+
+  public sendLoginForm(): void {
+    //this.service.login();
+
+    this.router.navigate([this.routers.LOGIN]).then();
+  }
+
+  public sendSignForm(): void {
+   // this.service.sign();
+
+    this.router.navigate([this.routers.DASHBOARD]).then();
+  }
+}

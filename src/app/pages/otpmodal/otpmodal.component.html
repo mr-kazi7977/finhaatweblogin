@@ -1,0 +1,14 @@
+<!-- {{data}} -->
+<div class="modal-header">
+    <h5 class="modal-title text-success" id="exampleModalLabel">OTP Verify</h5>
+    <!-- <button type="button" class="btn-close"  aria-label="Close"></button> -->
+    <mat-icon style="font-size: 25px;" (click)="closebtn()">highlight_off</mat-icon>
+</div>
+<div class="modal-body mt-3 mx-sm-3 mb-2">
+    <input type="text" placeholder="Please Enter OTP" [(ngModel)]="user.otp"  style="border: 2px solid black; outline: none;"
+        class="w-100 form-control " maxlength="6">
+</div>
+<div class="modal-footer">
+    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+    <button type="button" (click)="verify()" class="btnverify">Verify</button>
+</div>

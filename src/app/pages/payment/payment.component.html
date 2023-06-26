@@ -1,0 +1,100 @@
+<app-layout>
+
+    <ng-form class="body">
+        <div class="row mb-2">
+
+
+            <div class="container " *ngIf="policy=='0'">
+
+                <div class="alert alert-danger" role="alert">
+                    <p> <mat-icon>error</mat-icon> Sorry, we are unable to process your payment at this time. Please
+                        retry
+                        later.Incase your amount is debited, it will be refunded in your bank account soon. </p>
+                </div>
+
+
+            </div>
+
+            <div class="container mt-2">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Details</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+
+
+                            <td>Payment Reference Number</td>
+                            <td>
+                                <span *ngIf="policy==0" style="color: red;">Payment Failed</span>
+                                {{payreceipt?.payrefno}}
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+
+                            <td>Amount</td>
+
+                            <td>
+                                <span *ngIf="policy==0" style="color: red;">Payment Failed</span>
+                                {{payreceipt?.amount}}
+                            </td>
+
+                        </tr>
+                        <tr>
+
+
+                            <td>Certificate Number</td>
+                            <td>
+                                <span *ngIf="policy==0" style="color: red;">Payment Failed</span>
+                                {{payreceipt?.certificateNumber}}
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+
+                            <div class="row">
+
+                                <div class="col-3 text-center mt-2 ">
+                                    <button mat-raised-button color="primary" *ngIf="policy!=0"
+                                        (click)="download()">Download</button>
+
+                                </div>
+                                <!-- <div class="col-3 text-center mt-2 " >
+                                    <button mat-raised-button color="primary" *ngIf="policy!=0"
+                                        (click)="generatePolicy()">Generate
+                                        Policy</button>
+
+                                </div> -->
+
+                            </div>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+
+
+    </ng-form>
+
+
+
+
+
+
+
+
+
+</app-layout>

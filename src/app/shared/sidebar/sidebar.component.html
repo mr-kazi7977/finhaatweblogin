@@ -1,0 +1,22 @@
+<mat-list>
+
+
+  <!-- <mat-list-item routerLink="{{routes.CDOT}}" routerLinkActive="active" *ngIf="user=='partner'"> -->
+  <mat-list-item routerLink="{{routes.CDOT}}" routerLinkActive="active" *ngIf="productdata?.length!=0">
+    <mat-icon>perm_contact_calendar</mat-icon>Create Policy 
+  </mat-list-item>
+  
+  <mat-list-item routerLink="{{routes.POLICYDEATIL}}" routerLinkActive="active" >
+    <mat-icon>check_circle_outline</mat-icon> Policy Detail
+  </mat-list-item>
+
+  <mat-list-item routerLink="{{routes.REPORTS}}" routerLinkActive="active" *ngIf="productdata?.length==0">
+    <mat-icon>perm_contact_calendar</mat-icon> Report
+  </mat-list-item>
+<!--   
+    <mat-list-item routerLink="{{routes.POSREGISTER}}" routerLinkActive="active">
+      <mat-icon>perm_contact_calendar</mat-icon> POS REGISTER
+    </mat-list-item> -->
+ 
+</mat-list>
+
